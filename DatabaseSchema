@@ -1,0 +1,264 @@
+USE [master]
+GO
+/****** Object:  Database [TravelDb]    Script Date: 5.09.2021 11:25:15 ******/
+CREATE DATABASE [TravelDb]
+ CONTAINMENT = NONE
+ ON  PRIMARY 
+( NAME = N'TravelDb', FILENAME = N'C:\Users\...\TravelDb.mdf' , SIZE = 8256KB , MAXSIZE = UNLIMITED, FILEGROWTH = 1024KB )
+ LOG ON 
+( NAME = N'TravelDb_log', FILENAME = N'C:\Users\...\TravelDb_log.ldf' , SIZE = 24704KB , MAXSIZE = 2048GB , FILEGROWTH = 10%)
+GO
+ALTER DATABASE [TravelDb] SET COMPATIBILITY_LEVEL = 110
+GO
+IF (1 = FULLTEXTSERVICEPROPERTY('IsFullTextInstalled'))
+begin
+EXEC [TravelDb].[dbo].[sp_fulltext_database] @action = 'enable'
+end
+GO
+ALTER DATABASE [TravelDb] SET ANSI_NULL_DEFAULT OFF 
+GO
+ALTER DATABASE [TravelDb] SET ANSI_NULLS OFF 
+GO
+ALTER DATABASE [TravelDb] SET ANSI_PADDING OFF 
+GO
+ALTER DATABASE [TravelDb] SET ANSI_WARNINGS OFF 
+GO
+ALTER DATABASE [TravelDb] SET ARITHABORT OFF 
+GO
+ALTER DATABASE [TravelDb] SET AUTO_CLOSE OFF 
+GO
+ALTER DATABASE [TravelDb] SET AUTO_SHRINK OFF 
+GO
+ALTER DATABASE [TravelDb] SET AUTO_UPDATE_STATISTICS ON 
+GO
+ALTER DATABASE [TravelDb] SET CURSOR_CLOSE_ON_COMMIT OFF 
+GO
+ALTER DATABASE [TravelDb] SET CURSOR_DEFAULT  GLOBAL 
+GO
+ALTER DATABASE [TravelDb] SET CONCAT_NULL_YIELDS_NULL OFF 
+GO
+ALTER DATABASE [TravelDb] SET NUMERIC_ROUNDABORT OFF 
+GO
+ALTER DATABASE [TravelDb] SET QUOTED_IDENTIFIER OFF 
+GO
+ALTER DATABASE [TravelDb] SET RECURSIVE_TRIGGERS OFF 
+GO
+ALTER DATABASE [TravelDb] SET  DISABLE_BROKER 
+GO
+ALTER DATABASE [TravelDb] SET AUTO_UPDATE_STATISTICS_ASYNC OFF 
+GO
+ALTER DATABASE [TravelDb] SET DATE_CORRELATION_OPTIMIZATION OFF 
+GO
+ALTER DATABASE [TravelDb] SET TRUSTWORTHY OFF 
+GO
+ALTER DATABASE [TravelDb] SET ALLOW_SNAPSHOT_ISOLATION OFF 
+GO
+ALTER DATABASE [TravelDb] SET PARAMETERIZATION SIMPLE 
+GO
+ALTER DATABASE [TravelDb] SET READ_COMMITTED_SNAPSHOT ON 
+GO
+ALTER DATABASE [TravelDb] SET HONOR_BROKER_PRIORITY OFF 
+GO
+ALTER DATABASE [TravelDb] SET RECOVERY FULL 
+GO
+ALTER DATABASE [TravelDb] SET  MULTI_USER 
+GO
+ALTER DATABASE [TravelDb] SET PAGE_VERIFY CHECKSUM  
+GO
+ALTER DATABASE [TravelDb] SET DB_CHAINING OFF 
+GO
+ALTER DATABASE [TravelDb] SET FILESTREAM( NON_TRANSACTED_ACCESS = OFF ) 
+GO
+ALTER DATABASE [TravelDb] SET TARGET_RECOVERY_TIME = 0 SECONDS 
+GO
+ALTER DATABASE [TravelDb] SET DELAYED_DURABILITY = DISABLED 
+GO
+ALTER DATABASE [TravelDb] SET QUERY_STORE = OFF
+GO
+USE [TravelDb]
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET LEGACY_CARDINALITY_ESTIMATION = OFF;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET MAXDOP = 0;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET PARAMETER_SNIFFING = ON;
+GO
+ALTER DATABASE SCOPED CONFIGURATION SET QUERY_OPTIMIZER_HOTFIXES = OFF;
+GO
+USE [TravelDb]
+GO
+/****** Object:  Table [dbo].[__MigrationHistory]    Script Date: 5.09.2021 11:25:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[__MigrationHistory](
+	[MigrationId] [nvarchar](150) NOT NULL,
+	[ContextKey] [nvarchar](300) NOT NULL,
+	[Model] [varbinary](max) NOT NULL,
+	[ProductVersion] [nvarchar](32) NOT NULL,
+ CONSTRAINT [PK_dbo.__MigrationHistory] PRIMARY KEY CLUSTERED 
+(
+	[MigrationId] ASC,
+	[ContextKey] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Categories]    Script Date: 5.09.2021 11:25:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Categories](
+	[categoryID] [int] IDENTITY(1,1) NOT NULL,
+	[mainCategoryID] [int] NOT NULL,
+	[categoryName] [nvarchar](max) NULL,
+	[categoryPhoto] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.Categories] PRIMARY KEY CLUSTERED 
+(
+	[categoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Comments]    Script Date: 5.09.2021 11:25:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Comments](
+	[commentID] [int] IDENTITY(1,1) NOT NULL,
+	[commentNewId] [int] NOT NULL,
+	[commentAvatar] [nvarchar](max) NULL,
+	[commentUsername] [nvarchar](max) NULL,
+	[commentMail] [nvarchar](max) NULL,
+	[commentMessage] [nvarchar](max) NULL,
+	[commentTime] [datetime] NOT NULL,
+	[New_newID] [int] NULL,
+	[commentConfirm] [bit] NOT NULL,
+ CONSTRAINT [PK_dbo.Comments] PRIMARY KEY CLUSTERED 
+(
+	[commentID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[Editors]    Script Date: 5.09.2021 11:25:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[Editors](
+	[editorID] [int] IDENTITY(1,1) NOT NULL,
+	[editorUsername] [nvarchar](max) NULL,
+	[editorFirstname] [nvarchar](max) NULL,
+	[editorLastname] [nvarchar](max) NULL,
+	[editorDetail] [nvarchar](max) NULL,
+	[editorEmail] [nvarchar](max) NULL,
+	[EditorPhoto] [nvarchar](max) NULL,
+	[editorPassword] [nvarchar](max) NULL,
+	[editorState] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.Editors] PRIMARY KEY CLUSTERED 
+(
+	[editorID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[MainCategories]    Script Date: 5.09.2021 11:25:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[MainCategories](
+	[mainCategoryID] [int] IDENTITY(1,1) NOT NULL,
+	[mainCategoryName] [nvarchar](max) NULL,
+ CONSTRAINT [PK_dbo.MainCategories] PRIMARY KEY CLUSTERED 
+(
+	[mainCategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Table [dbo].[News]    Script Date: 5.09.2021 11:25:15 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE TABLE [dbo].[News](
+	[newID] [int] IDENTITY(1,1) NOT NULL,
+	[newTitle] [nvarchar](max) NULL,
+	[newDescription] [nvarchar](max) NULL,
+	[newDetail] [nvarchar](max) NULL,
+	[newPhoto] [nvarchar](max) NULL,
+	[newtime] [datetime] NOT NULL,
+	[newViewNumber] [int] NOT NULL,
+	[newCategoryId] [int] NOT NULL,
+	[newMainCategoryId] [int] NOT NULL,
+	[newEditorId] [int] NOT NULL,
+ CONSTRAINT [PK_dbo.News] PRIMARY KEY CLUSTERED 
+(
+	[newID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY] TEXTIMAGE_ON [PRIMARY]
+GO
+/****** Object:  Index [IX_mainCategoryID]    Script Date: 5.09.2021 11:25:15 ******/
+CREATE NONCLUSTERED INDEX [IX_mainCategoryID] ON [dbo].[Categories]
+(
+	[mainCategoryID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_New_newID]    Script Date: 5.09.2021 11:25:15 ******/
+CREATE NONCLUSTERED INDEX [IX_New_newID] ON [dbo].[Comments]
+(
+	[New_newID] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_newCategoryId]    Script Date: 5.09.2021 11:25:15 ******/
+CREATE NONCLUSTERED INDEX [IX_newCategoryId] ON [dbo].[News]
+(
+	[newCategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_newEditorId]    Script Date: 5.09.2021 11:25:15 ******/
+CREATE NONCLUSTERED INDEX [IX_newEditorId] ON [dbo].[News]
+(
+	[newEditorId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+/****** Object:  Index [IX_newMainCategoryId]    Script Date: 5.09.2021 11:25:15 ******/
+CREATE NONCLUSTERED INDEX [IX_newMainCategoryId] ON [dbo].[News]
+(
+	[newMainCategoryId] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, SORT_IN_TEMPDB = OFF, DROP_EXISTING = OFF, ONLINE = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+GO
+ALTER TABLE [dbo].[Comments] ADD  CONSTRAINT [DF__Comments__commen__47DBAE45]  DEFAULT ((0)) FOR [commentConfirm]
+GO
+ALTER TABLE [dbo].[Categories]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Categories_dbo.MainCategories_mainCategoryID] FOREIGN KEY([mainCategoryID])
+REFERENCES [dbo].[MainCategories] ([mainCategoryID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[Categories] CHECK CONSTRAINT [FK_dbo.Categories_dbo.MainCategories_mainCategoryID]
+GO
+ALTER TABLE [dbo].[Comments]  WITH CHECK ADD  CONSTRAINT [FK_dbo.Comments_dbo.News_New_newID] FOREIGN KEY([New_newID])
+REFERENCES [dbo].[News] ([newID])
+GO
+ALTER TABLE [dbo].[Comments] CHECK CONSTRAINT [FK_dbo.Comments_dbo.News_New_newID]
+GO
+ALTER TABLE [dbo].[News]  WITH CHECK ADD  CONSTRAINT [FK_dbo.News_dbo.Categories_newCategoryId] FOREIGN KEY([newCategoryId])
+REFERENCES [dbo].[Categories] ([categoryID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_dbo.News_dbo.Categories_newCategoryId]
+GO
+ALTER TABLE [dbo].[News]  WITH CHECK ADD  CONSTRAINT [FK_dbo.News_dbo.Editors_newEditorId] FOREIGN KEY([newEditorId])
+REFERENCES [dbo].[Editors] ([editorID])
+ON DELETE CASCADE
+GO
+ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_dbo.News_dbo.Editors_newEditorId]
+GO
+ALTER TABLE [dbo].[News]  WITH CHECK ADD  CONSTRAINT [FK_dbo.News_dbo.MainCategories_newMainCategoryId] FOREIGN KEY([newMainCategoryId])
+REFERENCES [dbo].[MainCategories] ([mainCategoryID])
+GO
+ALTER TABLE [dbo].[News] CHECK CONSTRAINT [FK_dbo.News_dbo.MainCategories_newMainCategoryId]
+GO
+USE [master]
+GO
+ALTER DATABASE [TravelDb] SET  READ_WRITE 
+GO
