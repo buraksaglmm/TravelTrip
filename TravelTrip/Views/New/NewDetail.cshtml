@@ -1,0 +1,173 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+@{
+    ViewBag.Title = "NewDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+<div class="main-body">
+    <div class="wrap">
+        <ol class="breadcrumb">
+            <li><a href="/Default/Index/">Anasayfa</a></li>
+            <li><a href="/New/Index/">Haberler</a></li> <!--Buraya bakılacak-->
+            <li class="active">Haber</li>
+        </ol>
+        <div class="single-page">
+            <div class="col-md-2 share_grid hidden-xs hidden-sm">
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- dikeyyyyy -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9796945223671733"
+                     data-ad-slot="9965688349"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- dikeyyyyy -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9796945223671733"
+                     data-ad-slot="9965688349"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                <!-- dikeyyyyy -->
+                <ins class="adsbygoogle"
+                     style="display:block"
+                     data-ad-client="ca-pub-9796945223671733"
+                     data-ad-slot="9965688349"
+                     data-ad-format="auto"
+                     data-full-width-responsive="true"></ins>
+                <script>
+                    (adsbygoogle = window.adsbygoogle || []).push({});
+                </script>
+            </div>
+
+            <div class="col-md-6 col-xs-12 content-left single-post">
+                @foreach (var item in Model.Deger5)
+                {
+                    <p>
+                        <img src="@item.categoryPhoto" style="height:30px;width:30px" />
+                        &nbsp; <a style="color:gray" target="_blank" href="/Category/CategoryDetail/@item.categoryID/">@item.categoryName</a>
+                        <br />
+                    </p>
+                }
+
+
+                <div class="blog-posts">
+                    <div class="last-article">
+                        @foreach (var item in Model.Deger1)
+                        {
+                            <h3 class="post" style="margin-top:0px!important;margin-bottom:0px!important;font-weight:600;font-size:40px;">@item.newTitle</h3>
+                            <p class="artext" style="font-weight:600 !important;color:black !important;font-size:20px !important">@Html.Raw(item.newDescription)</p>
+
+                            <img src="@Url.Content(item.newPhoto)" style="width:100%;margin-top:20px" />
+                        }
+
+                        @foreach (var item in Model.Deger6)
+                        {
+                            <p class="artext">
+                                <span class="pull-right" style="font-weight:700">WebAnka.Net</span>
+                            </p>
+                        }
+
+                        @foreach (var item in Model.Deger1)
+                        {
+                            <p class="artext">
+                                <span style="font-weight:500"> @item.newtime.ToString("dddd, dd MMMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR"))</span>
+                            </p>
+                            <p class="artext" style="white-space: pre-line;color:black !important">
+                                @Html.Raw(item.newDetail)
+                            </p>
+                        }
+                        <div>
+                            <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                            <!-- gerÃ§ekyatay -->
+                            <ins class="adsbygoogle"
+                                 style="display:block"
+                                 data-ad-client="ca-pub-9796945223671733"
+                                 data-ad-slot="5124231681"
+                                 data-ad-format="auto"
+                                 data-full-width-responsive="true"></ins>
+                            <script>
+                                (adsbygoogle = window.adsbygoogle || []).push({});
+                            </script>
+                        </div>
+                        <ul class="categories">
+                            @foreach (var item in Model.Deger8)
+                            {
+                                <li style="margin:10px 10px 10px 10px;"><a href="/Category/CategoryDetail/@item.categoryID/" target="_blank">@item.categoryName</a></li>
+                            }
+
+                        </ul>
+                        <div class="clearfix"></div>
+                        <div class="col-xs-12 hidden-lg hidden-md" style="margin-top:20px;margin-bottom:20px">
+                            <div>
+                                <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+                                <!-- dikeyyyyy -->
+                                <ins class="adsbygoogle"
+                                     style="display:block"
+                                     data-ad-client="ca-pub-9796945223671733"
+                                     data-ad-slot="9965688349"
+                                     data-ad-format="auto"
+                                     data-full-width-responsive="true"></ins>
+                                <script>
+                                    (adsbygoogle = window.adsbygoogle || []).push({});
+                                </script>
+                            </div>
+                            <div class="clearfix"></div>
+
+                        </div>
+                        <div class="row related-posts">
+                            <h4 style="color:#002370 !important">Görmek İsteyebileceğiniz Haberler</h4>
+                            @foreach (var item in Model.Deger3.Take(4).OrderByDescending(x => x.newtime))
+                            {
+                                <div class="col-xs-6 col-md-3 ">
+                                    <a href="/New/NewDetail/@item.newID" style="color:#002370 !important;" class="thumbnail">
+                                        <img src="@Url.Content(item.newPhoto)" />
+                                    </a>
+                                    <h5><a style="color:#002370;" href="/New/NewDetail/@item.newID">@item.newTitle</a></h5>
+                                </div>
+                            }
+                        </div>
+
+                        <div class="response">
+                            <h3 style="color:#002370 !important">Yorumlar</h3>
+                            @if (Model.Deger2.Count() < 1)
+                            {
+                                <p class="artext" style="font-size:16px;color:#002370 !important">
+                                    İlk Yorumu Sen Yap!
+                                </p>
+                            }
+
+                            @foreach (var item in Model.Deger2.Where(x => x.commentConfirm == true))
+                            {
+                                <div class="media response-info">
+                                    <div class="media-left response-text-left">
+                                        <img class="media-object" src="@item.commentAvatar" style="width:100px;  border-radius: 50%;" alt="" />
+                                    </div>
+                                    <div class="media-body response-text-right">
+                                        <p class="artext" style="margin-left: 20px;font-size:16px; font-weight: 600">@item.commentUsername</p>
+                                        <p style="margin-left:40px"> @item.commentMessage</p>
+                                        <ul>
+                                            <li>@item.commentTime.ToString("dddd, dd MMMM yyyy, HH:mm", new System.Globalization.CultureInfo("tr-TR"))</li>
+                                        </ul>
+                                    </div>
+                                    <div class="clearfix"> </div>
+                                </div>
+                            }
+                        </div>
+                        @Html.Action("NewCommentList", "New")
+                    </div>
+                </div>
+            </div>
+            @Html.Action("LayoutRightPanel", "Default")
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

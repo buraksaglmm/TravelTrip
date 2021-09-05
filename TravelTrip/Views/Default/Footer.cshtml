@@ -1,0 +1,70 @@
+﻿﻿@model TravelTrip.Models.Classes.NewsComments
+<div class="footer">
+    <div class="footer-top">
+        <div class="wrap">
+            <div class="col-md-3 col-xs-6 col-sm-4 footer-grid">
+                <h4 class="footer-head" style="font-weight: 900;font-size:20px !important">Hakkımızda</h4>
+                <p style="font-size:14px !important; color:#002370 !important">
+                    Çıktığımız bu yolda; sizlere
+                    kulübümüzle alakalı güncel haberleri en hızlı ve güvenilir şekilde ulaştırmayı kendimize misyon ediniyoruz.
+                </p>
+
+            </div>
+            <div class="col-md-2 col-xs-6 col-sm-2 footer-grid">
+
+                <div class="row" style="margin-left:1px">
+                    <h4 class="footer-head" style="font-weight: 900;font-size:20px !important">Kategoriler</h4>
+                    <div class="col">
+                        <ul class="cat">
+                            @foreach (var item in Model.Deger9)
+                            {
+                                <li><a target="_blank" style="font-size:14px; color:#002370 !important" href="/Category/MainCategoryDetail/@item.mainCategoryID">@item.mainCategoryName</a></li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-xs-12 col-sm-7 footer-grid">
+                <h4 class="footer-head" style="font-weight: 900;font-size:20px !important">Sponsorlarımız</h4>
+                <ul class="flickr">
+                    <li><a href="~/Category/Index"><img src="~/Content/images/kayaradyator.jpg"></a></li>
+                    <div class="clearfix"></div>
+                </ul>
+            </div>
+            <div class="col-md-3 col-xs-12 col-sm-5 footer-grid">
+                <h4 class="footer-head" style="font-weight: 900;font-size:20px !important">İletişim</h4>
+
+                <address>
+                    <ul class="location">
+                        <li><span class="glyphicon glyphicon-map-marker"></span></li>
+                        <li style="text-transform:uppercase!important;font-size:14px; color:#002370 !important">Ankara/TÜRKİYE</li>
+                        <div class="clearfix"></div>
+                    </ul>
+                    <ul class="location">
+                        <li><span class="glyphicon glyphicon-envelope"></span></li>
+                        <li style="font-size:14px; color:#002370 !important">webankanet@gmail.com</li>
+                        <div class="clearfix"></div>
+                    </ul>
+                </address>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="wrap">
+            <div class="copyrights col-md-6">
+                <p style="font-size:13px !important">WebAnka.Net | Spor Medyası © 2021 - Tüm Hakları Saklıdır.</p>
+            </div>
+            <div class="footer-social-icons col-md-6">
+                <ul>
+                    <li><a class="facebook"></a></li>
+                    <li><a class="twitter"></a></li>
+                    @*<li><a class="twitter" href="*" target="_blank"></a></li>*@
+                    <li><a class="flickr"></a></li>
+                    <li><a class="googleplus"></a></li>
+                </ul>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+    </div>
+</div>

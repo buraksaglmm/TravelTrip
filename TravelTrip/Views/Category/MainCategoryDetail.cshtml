@@ -1,0 +1,66 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+@{
+    ViewBag.Title = "MainCategoryDetail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="wrap">
+        <ol class="breadcrumb">
+            <li><a href="/Default/Index/">Anasayfa</a></li>
+            <li class="active">@ViewBag.catName</li>
+        </ol>
+        <div class="col-md-8 content-left">
+
+            <div class="slider">
+                <div class="callbacks_wrap">
+                    <ul class="rslides" id="slider">
+                        @foreach (var item in Model.Deger1.OrderByDescending(x => x.newtime).Take(5))
+                        {
+                            <li>
+                                <a target="_blank" style="font-size:24px" href="/New/NewDetail/@item.newID"> <img src="@item.newPhoto" alt=""></a>
+                                <div class="caption">
+                                    <a style="font-size:24px" href="/New/NewDetail/@item.newID">@item.newTitle</a>
+                                </div>
+                            </li>
+                        }
+                    </ul>
+                </div>
+            </div>
+
+            <div class="articles">
+                <header>
+                    <h3 class="title-head">@ViewBag.catName Haberleri</h3>
+                </header>
+                @foreach (var item in Model.Deger1.OrderByDescending(x => x.newtime).Skip(5).Take(50))//ilk 5 sliderda diye atladık onları
+                {
+                    <div class="article">
+                        <div class="article-left">
+                            <a href="/New/NewDetail/@item.newID"><img src="@item.newPhoto"></a>
+                        </div>
+                        <div class="article-right">
+                            <div class="article-title">
+                                <p>
+                                    @item.newtime.ToString("dddd, dd MMMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR"))
+                                </p>
+                                <a class="title" href="/New/NewDetail/@item.newID">@item.newTitle</a>
+                            </div>
+                            <div class="article-text">
+                                <p>@Html.Raw(item.newDescription)</p>
+                                <a href="/New/NewDetail/@item.newID"><img src="~/web3/images/details.png" alt="" style="height:60px;width:60px" /></a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+                <div class="article-text">
+                    <a class="btn btn-default pull-right" style="margin-top:20px;background-color:#002370;color:white;font-size:16px;font-style:italic" href="/New/Index/">Tüm Haberler</a>
+                </div>
+            </div>
+
+        </div>
+        @Html.Action("LayoutRightPanel", "Default")
+        <div class="clearfix"></div>
+    </div>
+</div>

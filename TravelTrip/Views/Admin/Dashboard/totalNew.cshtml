@@ -1,0 +1,52 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+
+<div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight:800;color:#e05d6f">En Son Yayınlanan Haberler</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered" id="New" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Haber Id</th>
+                            <th>Haber Kategori</th>
+                            <th>Haber Başlık</th>
+                            <th>Haber Tarih</th>
+                            <th>Haber Editor</th>
+                            <th>Habere Git</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Deger1.OrderByDescending(x => x.newtime).Take(5).ToList())
+                    {
+                        <tr style="">
+                            <th>@item.newID</th>
+                            <td>@item.newCategory.categoryName</td>
+                            @if (item.newTitle.Length > 40)
+                            {
+                                <td>@item.newTitle.Substring(0, 40)</td>
+
+                            }
+                            else
+                            {
+                                <td>@item.newTitle</td>
+                            }
+                            <td>@item.newtime</td>
+                            <td>@item.newEditor.editorUsername</td>
+                            <td style="width:120px">
+                                <a href="~/New/NewDetail/@item.newID" class="btn btn-default" target="_blank" style="width: 8rem;background:#e05d6f;color:white;" />Habere Git
+                            </td>
+                        </tr>
+                    }
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="~/Admin/News" class="btn btn-default" target="_blank" style="width: 14rem;background:#e05d6f;color:white;">Tüm Haberleri Görüntüle</a>
+            </div>
+        </div>
+    </div>
+</div>

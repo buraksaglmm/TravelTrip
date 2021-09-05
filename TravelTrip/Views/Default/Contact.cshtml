@@ -1,0 +1,39 @@
+﻿
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<div class="main-body">
+    <div class="wrap">
+        <ol class="breadcrumb">
+            <li><a href="/Default/Index/">Anasayfa</a></li>
+            <li class="active">İletişim</li>
+        </ol>
+
+        <!--contact-section-starts-->
+        <div class="contact-section">
+            <div class="col-md-6 contact-top">
+                <h2 style="margin-bottom:10px">Bizimle İletişime Geçiniz!</h2>
+                <p class="contact_msg">Aşağıdaki formu doğru bilgilerle doldurarak bizimle iletişime geçebilirsiniz, mail üzerinden cevaplandırılacaktır.</p>
+                <form>
+                    <div class="to">
+                        <input type="text" class="text" value="Ad Soyad:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Ad Soyad:';}">
+                        <input type="text" class="text" value="Email:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Email:';}" style="margin-left:20px">
+                        <input type="text" class="text" value="Konu:" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Konu:';}" style="margin-left:20px">
+                    </div>
+                    <div class="text">
+                        <textarea onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Mesajınız:';}">Mesajınız:</textarea>
+                    </div>
+                    <br />
+                    <div class="form-submit1">
+                        <input name="submit" type="submit" id="submit" value="Mesajı Gönder"><br>
+                    </div>
+                    <div class="clearfix"> </div>
+                </form>
+            </div>
+            <div class="clearfix"></div>
+        </div>
+
+        <!--contact-section-ends-->
+    </div>
+</div>

@@ -1,0 +1,127 @@
+﻿@using TravelTrip.Models.Classes
+@using PagedList;
+@using PagedList.Mvc;
+
+@model List<Editor>
+@{
+    ViewBag.Title = "Editor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Editor Yönetim Alanı</h1>
+    <br />
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+
+            <h6 class="m-0 font-weight-bold text-primary">Editor Listesi</h6>
+        </div>
+        <div class="card-body">
+            <a href="/Admin/AddEditor/" style="margin-bottom:10px;margin-left:15px" class="btn btn-success">Yeni Editor Ekle</a>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="Editor" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Editör Id</th>
+                            <th>Editör Kullanıcı Adı</th>
+                            <th>Editör Ad</th>
+                            <th>Editör Soyad</th>
+                            <th>Editör Email</th>
+                            <th>Editör Detaylar</th>
+                            <th>Editör Fotoğraf</th>
+                            <th>Editör Durumu</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model)
+                    {
+                        <tr>
+
+                            <th>@item.editorID</th>
+                            <td>@item.editorUsername</td>
+                            <td>@item.editorFirstname</td>
+                            <td>@item.editorLastname</td>
+                            <td>@item.editorEmail</td>
+                            @if (item.editorDetail.Length > 30)
+                            {
+                                <td>@item.editorDetail.Substring(0, 30)</td>
+                            }
+                            else
+                            {
+                                <td>@item.editorDetail</td>
+                            }
+
+                            @if (item.EditorPhoto.Length > 30)
+                            {
+                                <td>@item.EditorPhoto.Substring(0, 30)</td>
+                            }
+                            else
+                            {
+                                <td>@item.EditorPhoto</td>
+                            }
+                            <td>@item.editorState</td>
+                            <td>@Html.ActionLink("SİL", "DeleteEditor", new { id = item.editorID }, new { @class = "btn btn-primary", onclick = "return confirm('Silmek İstiyor Musunuz?')" })</td>
+                            <td><a href="~/Admin/GetEditor/@item.editorID" class="btn btn-info" />Güncelle</td>
+                        </tr>
+                    }
+                </table>
+
+                @* DataTabel Scripts vs.**@
+                <div>
+                    <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+                    <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+                    <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+                    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                    <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+                    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+                    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js "></script>
+                    <script>
+                        $('#Editor').DataTable({
+                            "lengthMenu": [[25, 10, 50, 100, -1], [25, 10, 50, 100, "All"]],
+                            "language": {
+                                "sDecimal": ",",
+                                "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+                                "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                                "sInfoEmpty": "Kayıt yok",
+                                "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+                                "sInfoPostFix": "",
+                                "sInfoThousands": ".",
+                                "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                                "sLoadingRecords": "Yükleniyor...",
+                                "sProcessing": "İşleniyor...",
+                                "sSearch": "Ara:",
+                                "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                                "oPaginate": {
+                                    "sFirst": "İlk",
+                                    "sLast": "Son",
+                                    "sNext": "Sonraki",
+                                    "sPrevious": "Önceki"
+                                },
+                                "oAria": {
+                                    "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                                    "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                                },
+                                "select": {
+                                    "rows": {
+                                        "_": "%d kayıt seçildi",
+                                        "0": "",
+                                        "1": "1 kayıt seçildi"
+                                    }
+                                }
+                            }
+                        });
+                    </script>
+                    <!-- Sayfalama + Tabloda Arama İşlemi Örnek Kod-->
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

@@ -1,0 +1,71 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    <div class="col">
+        <div class="card" data-toggle="modal" data-target="#exampleModal1" style="width: 18rem;background:#e05d6f;color:white;">
+            <div class="card-body">
+                <p style="font-size:24px"> <i class="fas fa-newspaper">&nbsp; @Html.ViewBag.totalNew</i></p>
+                <h5 class="text-uppercase">Toplam Haber</h5>
+                <hr class="rounded" style="border: solid white 2px">
+                <p class="card-text">En Son Yayınlanan Haberler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" data-toggle="modal" data-target="#exampleModal" style="width: 18rem;background:#16a085;color:white;">
+            <div class="card-body">
+                <p style="font-size:24px"> <i class="fas fa-comments">&nbsp; @Html.ViewBag.totalComment</i></p>
+                <h5 class="text-uppercase">Toplam Yorum</h5>
+                <hr class="rounded" style="border: solid white 2px">
+                <p class="card-text">En Çok Yorum Alan Haberler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" data-toggle="modal" data-target="#exampleModal2" style="width: 20rem;background:#418bca;color:white;">
+            <div class="card-body" style="margin-bottom:-30px;">
+                <div class="float-left">
+                    <p style="font-size:24px"> <i class="fab fa-buffer">&nbsp; @Html.ViewBag.totalMainCategory</i></p>
+                    <h5 style="font-size:12px" class="text-uppercase">Toplam Üst Kategori</h5>
+                </div>
+                <div class="float-right">
+                    <p style="font-size:24px"> <i class="fas fa-server">&nbsp; @Html.ViewBag.totalCategory</i></p>
+                    <h5 style="font-size:12px" class="text-uppercase">Toplam Kategori</h5>
+                </div>
+            </div>
+            <div class="card-footer" style="background:#418bca;color:white;border:0px;margin-bottom:8px">
+                <hr class="rounded" style="border: solid white 2px">
+                <p class="card-text">En Son Eklenen Kategoriler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" data-toggle="modal" data-target="#exampleModal3" style="width: 18rem;background:#3f4e62;color:white;">
+            <div class="card-body">
+                <p style="font-size:24px"> <i class="far fa-eye">&nbsp; @Html.ViewBag.totalView</i></p>
+                <h5 class="text-uppercase">Total Görüntülenme</h5>
+                <hr class="rounded" style="border: solid white 2px">
+                <p class="card-text">En Çok Görüntülenen Haberler</p>
+            </div>
+        </div>
+    </div>
+    <div class="col">
+        <div class="card" data-toggle="modal" data-target="#exampleModal4" style="width: 18rem;background:#c06f2e;color:white;">
+            <div class="card-body">
+                <p style="font-size:24px"> <i class="fas fa-user-edit">&nbsp; @Html.ViewBag.totalEditor</i></p>
+                <h5 class="text-uppercase">Total Editor</h5>
+                <hr class="rounded" style="border: solid white 2px">
+                <p class="card-text">En Başarılı Editorler</p>
+            </div>
+        </div>
+    </div>
+</div>
+@Html.Action("totalComment", "Admin")
+@Html.Action("totalNew", "Admin")
+@Html.Action("totalCategory", "Admin")
+@Html.Action("totalView", "Admin")
+@Html.Action("totalEditor", "Admin")

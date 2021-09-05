@@ -1,0 +1,50 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+
+
+<div class="modal fade" id="exampleModal2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight:800;color:#418bca">En Son Eklenen Kategoriler</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered" id="Category" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Kategori Id</th>
+                            <th>Üst Kategori</th>
+                            <th>Kategori Ad</th>
+                            <th>Kategori Fotoğraf</th>
+                            <th>Sil</th>
+                        </tr>
+                    </thead>
+                    @foreach (var category in Model.Deger5.OrderByDescending(x => x.categoryID).Take(5).ToList())
+                    {
+                <tr>
+                    <th>@category.categoryID</th>
+                    <td>@category.MainCategory.mainCategoryName</td>
+                    <td>@category.categoryName</td>
+                    @if (category.categoryPhoto.Length > 20)
+                    {
+                        <td>@category.categoryPhoto.Substring(0, 20)</td>
+                    }
+                    else
+                    {
+                        <td>@category.categoryPhoto</td>
+                    }
+                    <td style="width:120px">
+                        <a href="~/Category/CategoryDetail/@category.categoryID" class="btn btn-default" target="_blank" style="width: 8rem;background:#418bca;color:white;" />Kategoriye Git
+                    </td>
+                </tr>
+                    }
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="~/Admin/Categories" class="btn btn-default" target="_blank" style="width: 14rem;background:#418bca;color:white;">Tüm Kategorileri Görüntüle</a>
+            </div>
+        </div>
+    </div>
+</div>

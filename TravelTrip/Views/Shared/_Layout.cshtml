@@ -1,0 +1,77 @@
+﻿<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <script data-ad-client="ca-pub-9796945223671733" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <link rel="shortcut icon" type="image/x-icon" href="~/Content/images/webanka_icon.ico" />
+    <title>WebAnka | Spor Medyası</title>
+    <link href="~/web3/css/bootstrap.css" rel='stylesheet' type='text/css' />
+    <script src="~/web3/js/jquery.min.js"></script>
+    <link href="~/web3/css/style.css" rel="stylesheet" type="text/css" media="all" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <script type="text/javascript" src="~/web3/js/bootstrap.js"></script>
+    <link href='//fonts.googleapis.com/css?family=Open+Sans:400,300,300italic,400italic,600,600italic,700,700italic,800,800italic' rel='stylesheet' type='text/css'>
+    <link href='//fonts.googleapis.com/css?family=Varela+Round' rel='stylesheet' type='text/css'>
+    <script src="~/web3/js/responsiveslides.min.js"></script>
+    <script>
+        $(function () {
+            $("#slider").responsiveSlides({
+                auto: true,
+                nav: true,
+                speed: 500,
+                timeout: 8000,
+                namespace: "callbacks",
+                pager: true,
+            });
+        });
+    </script>
+    <script type="text/javascript" src="~/web3/js/move-top.js"></script>
+    <script type="text/javascript" src="~/web3/js/easing.js"></script>
+    <script type="text/javascript">
+        jQuery(document).ready(function ($) {
+            $(".scroll").click(function (event) {
+                event.preventDefault();
+                $('html,body').animate({ scrollTop: $(this.hash).offset().top }, 900);
+            });
+        });
+    </script>
+</head>
+<body>
+    <div class="header">
+
+        <div class="logo">
+            <a href="http://webanka.net"><img src="~/Content/images/banner_pro.png" style="width:100%;" alt="" /></a>
+        </div>
+        <div class="navigation">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="wrap">
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+
+                    </div>
+                    @Html.Action("DynamicNavbar", "Default")
+                </div>
+            </nav>
+        </div>
+    </div>
+    <div>
+        @Html.Action("BreakingNews", "Default")
+    </div>
+    <div class="body-content">
+        @RenderBody()
+    </div>
+    @Html.Action("Footer", "Default")
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $().UItoTop({ easingType: 'easeOutQuart' });
+        });
+    </script>
+    <a href="#to-top" id="toTop" style="display: block"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+</body>
+</html>

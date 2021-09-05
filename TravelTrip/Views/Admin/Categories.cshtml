@@ -1,0 +1,137 @@
+﻿@using TravelTrip.Models.Classes
+@using PagedList;
+@using PagedList.Mvc;
+
+@model List<Category>
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Kategori Yönetim Alanı</h1>
+    <br />
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Kategori Listesi</h6>
+        </div>
+        <div class="card-body">
+            <a href="/Admin/AddCategory/" style="margin-bottom:10px;margin-left:15px" class="btn btn-success">Yeni Kategori Ekle</a>
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="Category" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Kategori Id</th>
+                            <th>Üst Kategori</th>
+                            <th>Kategori Ad</th>
+                            <th>Kategori Fotoğraf</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                            <th>Kategoriye Git</th>
+                        </tr>
+                    </thead>
+                    @foreach (var category in Model)
+                    {
+                <tr>
+                    <th>@category.categoryID</th>
+                    <td>@category.MainCategory.mainCategoryName</td>
+                    <td>@category.categoryName</td>
+                    @if (category.categoryPhoto.Length > 50)
+                    {
+                        <td>@category.categoryPhoto.Substring(0, 50)</td>
+
+                    }
+                    else
+                    {
+                        <td>@category.categoryPhoto</td>
+                    }
+                    <td><input type="button" value="Sil" name="@category.categoryID" class="btn btn-primary DeleteCategory" /></td>
+                    <td><a href="~/Admin/GetCategory/@category.categoryID" class="btn btn-info" />Güncelle</td>
+                    <td ><a href="~/Category/CategoryDetail/@category.categoryID" class="btn btn-outline-secondary" target="_blank" />Kategoriye Git</td>
+                </tr>
+                    }
+                </table>
+
+                @* DataTabel Scripts vs.**@
+            <div>
+                <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+                <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+                <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+                <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js "></script>
+                <script>
+                    $('#Category').DataTable({
+                        "lengthMenu": [[25, 10, 50, 100, -1], [25, 10, 50, 100, "All"]],
+                        "language": {
+                            "sDecimal": ",",
+                            "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+                            "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                            "sInfoEmpty": "Kayıt yok",
+                            "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                            "sLoadingRecords": "Yükleniyor...",
+                            "sProcessing": "İşleniyor...",
+                            "sSearch": "Ara:",
+                            "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                            "oPaginate": {
+                                "sFirst": "İlk",
+                                "sLast": "Son",
+                                "sNext": "Sonraki",
+                                "sPrevious": "Önceki"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                                "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                            },
+                            "select": {
+                                "rows": {
+                                    "_": "%d kayıt seçildi",
+                                    "0": "",
+                                    "1": "1 kayıt seçildi"
+                                }
+                            }
+                        }
+                    });
+                </script>
+                <!-- Sayfalama + Tabloda Arama İşlemi Örnek Kod-->
+                @*Silme Script*@
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".DeleteCategory").click(function () {
+                            //Herhangi bir satırdaki <a..> </a> tagı tıklandığı zaman tetiklenecek olan metotdur.
+                            if (confirm("Haberi silmek istediğinizden emin misiniz?")) {
+                                var ID = $(this).attr('name');
+                                //Tıklanan ilgili linkin name özelliğindeki ID değerini çekiyoruz.
+                                $.ajax({
+                                    url: '/Admin/DeleteCategory/' + ID,//Ajax ile tetiklenecek ilgili adresi belirliyoruz.
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        $("#Category").html(data);
+                                        //Gelen Json veriyi ilgili taga yerleştiriyoruz.
+                                    }
+                                });
+
+                                $(this).parent('td').parent('tr').remove();
+                                //Ajax işlemi başarıyla sonuçlandıktan sonra ilgili satırı bu komut ile siliyoruz.
+                            }
+                        });
+                    });
+                </script>
+                <!--Silme Script-->
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

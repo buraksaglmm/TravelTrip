@@ -1,0 +1,52 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+
+<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+    <ul class="nav navbar-nav">
+        <li><a href="/Default/Index" style="font-weight:600">ANASAYFA</a></li>
+        @foreach (var item in Model.Deger9)
+        {
+            <li class="dropdown">
+                <a href="/Category/MainCategoryDetail/@item.mainCategoryID" style="font-weight:600" class="dropdown-toggle active" data-toggle="dropdown">
+                    @if (item.mainCategoryName.Contains("EURO"))
+                    {
+                        <img src="~/Content/images/pngeuro2020.png" style="height:20px; margin-right: 10px" />@item.mainCategoryName.ToUpper()
+                    }
+                    else
+                    {
+                        @item.mainCategoryName.ToUpper()
+                    }
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a style="font-size:16px;font-weight:600;color:#002370 !important;" href="/Category/MainCategoryDetail/@item.mainCategoryID">@item.mainCategoryName.ToUpper()</a></li>
+                    @foreach (var item2 in Model.Deger8.Where(x => x.mainCategoryID == item.mainCategoryID))
+                    {
+                        <li class="divider" style="margin-bottom:5px;"></li>
+                        <li><a href="/Category/CategoryDetail/@item2.categoryID"><img src="@item2.categoryPhoto" style="width:35px;height:35px;margin-right:10px" />@item2.categoryName</a></li>
+                    }
+                </ul>
+            </li>
+        }
+        <li><a href="/Category/Index" style="font-weight:600">SPONSORLARIMIZ</a>
+        <li><a href="/Default/About" style="font-weight:600">HAKKIMIZDA</a>
+    </ul>
+    <div class="search">
+        <div class="search-box">
+            <div id="sb-search" class="sb-search">
+                @Html.BeginForm("SearchNew", "Default", FormMethod.Post)
+                {
+                <form>
+                    <input class="sb-search-input" placeholder="Aramak İstediğiniz İçeriği Yazınız" type="search" name="search" id="search">
+                    <input class="sb-search-submit" type="submit" value="">
+                    <span class="sb-icon-search"> </span>
+                </form>
+                }
+            </div>
+        </div>
+        <script src="~/web3/js/classie.js"></script>
+        <script src="~/web3/js/uisearch.js"></script>
+        <script>
+            new UISearch(document.getElementById('sb-search'));
+        </script>
+    </div>
+    <div class="clearfix"></div>
+</div>

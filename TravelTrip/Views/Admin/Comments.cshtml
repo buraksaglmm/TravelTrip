@@ -1,0 +1,191 @@
+﻿@using TravelTrip.Models.Classes
+@using PagedList;
+@using PagedList.Mvc;
+
+@model List<Comment>
+@{
+    ViewBag.Title = "Comments";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container-fluid">
+
+    <!-- Page Heading -->
+    <h1 class="h3 mb-2 text-gray-800">Yorum Yönetim Alanı</h1>
+    <br />
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+
+            <h6 class="m-0 font-weight-bold text-primary">Yorum Listesi</h6>
+        </div>
+        <div class="card-body">
+            <!--<a href="/Admin/AddNew/" style="margin-bottom:10px;margin-left:15px" class="btn btn-success">Yeni Haber Ekle</a> -->
+
+            <div class="table-responsive">
+                <table class="table table-bordered" id="Comment" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Yorum Id</th>
+                            <th>Yorum Haber</th>
+                            <th style="width:120px">Yorum Kullanıcı Adı</th>
+                            <th style="width:120px">Yorum Kullanıcı Mail</th>
+                            <th>Yorum Mesajı</th>
+                            <th>Yorum Avatar</th>
+                            <th>Yorum Zamanı</th>
+                            <th>Sil</th>
+                            <th>Güncelle</th>
+                            <th style="width:120px">Habere Git</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Where(x=>x.commentConfirm==true))
+                    {
+                <tr style="">
+                    <th>@item.commentID</th>
+                    @if (item.New.newTitle.Length > 15)
+                    {
+                        <td>@item.New.newTitle.Substring(0, 15)</td>
+                    }
+                    else
+                    {
+                        <td>@item.New.newTitle</td>
+                    }
+                    <td>@item.commentUsername</td>
+                    @if (item.commentMail.Length > 15)
+                    {
+                        <td>@item.commentMail.Substring(0, 15)</td>
+                    }
+                    else
+                    {
+                        <td>@item.commentMail</td>
+                    }
+                    @if (item.commentMessage.Length > 40)
+                    {
+                        <td>@item.commentMessage.Substring(0, 40)</td>
+                    }
+                    else
+                    {
+                        <td>@item.commentMessage</td>
+                    }
+
+                    @if (item.commentAvatar.Length > 20)
+                    {
+                        <td>@item.commentAvatar.Substring(0, 20)</td>
+
+                    }
+                    else
+                    {
+                        <td>@item.commentAvatar</td>
+                    }
+                    <td>@item.commentTime</td>
+                    <td><input type="button" value="Sil" name="@item.commentID" class="btn btn-primary DeleteComment" /></td>
+                    <td><a href="~/Admin/GetComment/@item.commentID" class="btn btn-info" />Güncelle</td>
+                    <td><a href="~/New/NewDetail/@item.commentNewId" class="btn btn-outline-secondary" target="_blank" />Habere Git</td>
+                </tr>
+                    }
+                </table>
+
+                @* DataTabel Scripts vs.**@
+            <div>
+                <link rel="stylesheet" type="text/css" href="/DataTables/datatables.css">
+                <script type="text/javascript" charset="utf8" src="/DataTables/datatables.js"></script>
+                <link href="~/Content/DataTables/css/dataTables.bootstrap4.css" rel="stylesheet" />
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+                <link href="https://cdn.datatables.net/responsive/2.1.1/css/responsive.bootstrap.min.css" rel="stylesheet" />
+                <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+                <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js "></script>
+                <script>
+                    $('#Comment').DataTable({
+                        "lengthMenu": [[25, 10, 50, 100, -1], [25, 10, 50, 100, "All"]],
+                        "language": {
+                            "sDecimal": ",",
+                            "sEmptyTable": "Tabloda herhangi bir veri mevcut değil",
+                            "sInfo": "_TOTAL_ kayıttan _START_ - _END_ arasındaki kayıtlar gösteriliyor",
+                            "sInfoEmpty": "Kayıt yok",
+                            "sInfoFiltered": "(_MAX_ kayıt içerisinden bulunan)",
+                            "sInfoPostFix": "",
+                            "sInfoThousands": ".",
+                            "sLengthMenu": "Sayfada _MENU_ kayıt göster",
+                            "sLoadingRecords": "Yükleniyor...",
+                            "sProcessing": "İşleniyor...",
+                            "sSearch": "Ara:",
+                            "sZeroRecords": "Eşleşen kayıt bulunamadı",
+                            "oPaginate": {
+                                "sFirst": "İlk",
+                                "sLast": "Son",
+                                "sNext": "Sonraki",
+                                "sPrevious": "Önceki"
+                            },
+                            "oAria": {
+                                "sSortAscending": ": artan sütun sıralamasını aktifleştir",
+                                "sSortDescending": ": azalan sütun sıralamasını aktifleştir"
+                            },
+                            "select": {
+                                "rows": {
+                                    "_": "%d kayıt seçildi",
+                                    "0": "",
+                                    "1": "1 kayıt seçildi"
+                                }
+                            }
+                        }
+                    });
+                </script>
+                <!-- Sayfalama + Tabloda Arama İşlemi Örnek Kod-->
+                @*Silme Script*@
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".DeleteComment").click(function () {
+                            //Herhangi bir satırdaki <a..> </a> tagı tıklandığı zaman tetiklenecek olan metotdur.
+                            if (confirm("Yorumu silmek istediğinizden emin misiniz?")) {
+                                var ID = $(this).attr('name');
+                                //Tıklanan ilgili linkin name özelliğindeki ID değerini çekiyoruz.
+                                $.ajax({
+                                    url: '/Admin/DeleteComment/' + ID,//Ajax ile tetiklenecek ilgili adresi belirliyoruz.
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        $("#Comment").html(data);
+                                        //Gelen Json veriyi ilgili taga yerleştiriyoruz.
+                                    }
+                                });
+
+                                $(this).parent('td').parent('tr').remove();
+                                //Ajax işlemi başarıyla sonuçlandıktan sonra ilgili satırı bu komut ile siliyoruz.
+                            }
+                        });
+                    });
+                </script>
+                <!--Silme Script--> 
+                @*Silme Script*@
+                <script type="text/javascript">
+                    $(document).ready(function () {
+                        $(".ConfirmComment").click(function () {
+                            //Herhangi bir satırdaki <a..> </a> tagı tıklandığı zaman tetiklenecek olan metotdur.
+                            if (confirm("Yorumu onaylamak istediğinizden emin misiniz?")) {
+                                var ID = $(this).attr('name');
+                                //Tıklanan ilgili linkin name özelliğindeki ID değerini çekiyoruz.
+                                $.ajax({
+                                    url: '/Admin/ConfirmComment/' + ID,//Ajax ile tetiklenecek ilgili adresi belirliyoruz.
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    success: function (data) {
+                                        $("#Comment").html(data);
+                                        //Gelen Json veriyi ilgili taga yerleştiriyoruz.
+                                    }
+                                });
+
+                                $(this).parent('td').parent('tr').find('.onay').text('True');
+                                //Ajax işlemi başarıyla sonuçlandıktan sonra ilgili satırı bu komut ile siliyoruz.
+                            }
+                        });
+                    });
+                </script>
+                <!--Silme Script-->
+            </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+

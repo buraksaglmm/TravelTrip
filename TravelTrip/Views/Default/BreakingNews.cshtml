@@ -1,0 +1,23 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+<div class="wrap">
+    <div class="move-text">
+        <div class="breaking_news" style="background-color:#ffc73b">
+            <h2 style="color:#002370">SON DAKİKA</h2>
+        </div>
+        <div class="marquee">
+            @foreach (var item in Model.Deger3.OrderByDescending(x => x.newtime).Take(5).ToList())
+            {
+                <div class="marquee1">
+                    <span>
+                        <img src="~/Content/images/webankalogo.png" style="height:25px;width:25px" />
+                    </span>&nbsp;&nbsp;<a class="breaking" target="_blank" href="/New/NewDetail/@item.newID">@item.newTitle</a>
+                </div>
+            }
+        </div>
+        <div class="clearfix"></div>
+        <script type="text/javascript" src="~/web3/js/jquery.marquee.min.js"></script>
+        <script>
+            $('.marquee').marquee({ pauseOnHover: true });
+        </script>
+    </div>
+</div>

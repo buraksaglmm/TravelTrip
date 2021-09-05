@@ -1,0 +1,85 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="main-body">
+    <div class="wrap">
+        <ol class="breadcrumb">
+            <li><a href="/Default/Index">Anasayfa</a></li>
+            <li class="active">Sponsorlarımız</li>
+        </ol>
+        <div class="col-md-8 content-left">
+            <div class="articles sports">
+                <header>
+                    <h3 class="side-title-head">Sponsorlarımız</h3>
+                </header>
+
+
+                <div class="fashion" style="margin-top:20px">
+                    <div class="fashion-top">
+                        <div class="fashion-left">
+                            <a><img src="~/Content/images/kayaradyator.jpg" class="img-responsive" alt=""></a>
+                            <h3><strong>KAYA RADYATÖR LTD.ŞTİ. </strong></h3>
+                            <p><strong>Adres:</strong> Bahçekapı, Şaşmaz Oto Sanayi, 2515. Cd., 06105 Etimesgut/Ankara</p>
+                            <p><strong>Telefon:</strong> (0312) 278 55 06</p>
+                        </div>
+                        @*<div class="fashion-right">
+                                <a><img src="~/Content/images/kayaradyator.jpg" class="img-responsive" alt=""></a>
+                                <h3><strong>KAYA RADYATÖR LTD.ŞTİ. </strong></h3>
+                                <p><strong>Adres:</strong> Bahçekapı, Şaşmaz Oto Sanayi, 2515. Cd., 06105 Etimesgut/Ankara</p>
+                                <p><strong>Telefon:</strong> (0312) 278 55 06</p>
+                            </div>*@
+                        <div class="clearfix"></div>
+                    </div>
+                </div>
+                @*<div class="row">
+                        <div class="col-md-6">
+                            <ul>
+                                @foreach (var item in Model.Deger9.Take(3))
+                                {
+                                    <div style="margin-top: 50px !important">
+                                        <a style="font-size:24px;font-weight:600;color:#002370;"
+                                           href="/Category/MainCategoryDetail/@item.mainCategoryID">@item.mainCategoryName</a>
+                                    </div>
+                                    <br />
+                                    <div style="margin-left:20px">
+                                        @foreach (var item2 in Model.Deger8.Where(x => x.mainCategoryID == item.mainCategoryID).ToList())
+                                        {
+                                            <div style="margin: 20px 20px 20px 20px">
+                                                <a style="color:gray" href="/Category/CategoryDetail/@item2.categoryID"> <img src="@item2.categoryPhoto" style="height:30px;width:30px;margin-right:20px" />@item2.categoryName.ToUpper()</a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </ul>
+                        </div>
+                        <div class="col-md-6">
+                            <ul>
+                                @foreach (var item in Model.Deger9.Skip(3).Take(3))
+                                {
+                                    <div style="margin-top: 50px !important">
+                                        <a style="font-size:24px;font-weight:600;color:#002370;"
+                                           href="/Category/MainCategoryDetail/@item.mainCategoryID">@item.mainCategoryName</a>
+                                    </div>
+                                    <br />
+                                    <div style="margin-left:20px">
+                                        @foreach (var item2 in Model.Deger8.Where(x => x.mainCategoryID == item.mainCategoryID).ToList())
+                                        {
+                                            <div style="margin: 20px 20px 20px 20px">
+                                                <a style="color:gray" href="/Category/CategoryDetail/@item2.categoryID"> <img src="@item2.categoryPhoto" style="height:30px;width:30px;margin-right:20px" />@item2.categoryName.ToUpper()</a>
+                                            </div>
+                                        }
+                                    </div>
+                                }
+                            </ul>
+                        </div>
+                    </div>*@
+            </div>
+        </div>
+        @Html.Action("LayoutRightPanel", "Default")
+        <div class="clearfix"></div>
+    </div>
+</div>

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewBag.Title = "AddEditor";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-top:50px">
+
+    <form class="form-group" method="post">
+        <div>
+            <label>Editor Kullanıcı Adı:</label>
+            <input type="text" class="form-control" name="editorUsername" required="required" />
+        </div>
+        <div>
+            <label>Editor Adı:</label>
+            <input type="text" class="form-control" name="editorFirstname" required="required" />
+        </div>
+        <div>
+            <label>Editor Soyadı:</label>
+            <input type="text" class="form-control" name="editorLastname" required="required" />
+        </div>
+        <div>
+            <label>Editor Parola:</label>
+            <input type="text" class="form-control" name="editorPassword" required="required" />
+        </div>
+        <div>
+            <label>Editor Hakkında:</label>
+            <input type="text" class="form-control" name="editorDetail" required="required" />
+        </div>
+        <div>
+            <label>Editor Email:</label>
+            <input type="text" class="form-control" name="editorEmail" required="required" />
+        </div>
+        <div>
+            <label>Editor Fotoğraf:</label>
+            <input type="text" class="form-control" name="editorPhoto" required="required" />
+        </div>
+        <div hidden="hidden">
+            <label>Editor Durum:</label>
+            <input type="text" class="form-control" name="editorState" value="Aktif" required="required" />
+        </div>
+        <div style="margin-top:10px">
+            <button class="btn btn-success">Editor Ekle </button>
+        </div>
+    </form>
+
+</div>

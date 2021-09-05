@@ -1,0 +1,33 @@
+﻿@model TravelTrip.Models.Classes.Category
+
+
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-top:50px">
+
+    <form class="form-group" method="post">
+        <div>
+            <label>Üst Kategori</label>
+            @Html.DropDownListFor(model => model.mainCategoryID, (List<SelectListItem>)ViewBag.maincategoryList, new { @class = "form-control" })
+        </div>
+        <div>
+            <label>Kategori Adı:</label>
+            <input type="text" class="form-control" name="categoryName" required="required" />
+        </div>
+        <br />
+        <div>
+            <label>Kategori Fotoğraf:</label>
+            <input type="text" class="form-control" name="categoryPhoto" required="required" />
+        </div>
+
+
+        <div style="margin-top:10px">
+            <button class="btn btn-success" id="btnAddCategory">Kategori Ekle </button>
+        </div>
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+    </form>
+
+</div>

@@ -1,0 +1,44 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+
+<div class="modal fade" id="exampleModal4" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel" style="font-weight:800;color:#c06f2e">En Başarılı Editorler</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-bordered" id="New" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Editor Id</th>
+                            <th>Editor Ad-Soyad</th>
+                            <th>Editor Kullanıcı Adı</th>
+                            <th>Haber Sayısı</th>
+                            <th>Toplam Yorum</th>
+                            <th>Toplam Beğeni</th>
+                            <th>Toplam Görüntülenme</th>
+                        </tr>
+                    </thead>
+                    @foreach (var item in Model.Deger6.OrderByDescending(x => Convert.ToInt32(x.editorEmail)).Take(5).ToList())
+                    {
+                <tr style="">
+                    <th>@item.editorID</th>
+                    <td>@item.editorFirstname @item.editorLastname</td>
+                    <td>@item.editorUsername</td>
+                    <td>@item.editorState</td>
+                    <td>@item.EditorPhoto</td>
+                    <td>@item.EditorPhoto</td>
+                    <td>@item.editorEmail</td>
+                </tr>
+                    }
+                </table>
+            </div>
+            <div class="modal-footer">
+                <a href="~/Admin/Editors" class="btn btn-default" target="_blank" style="width: 14rem;background:#c06f2e;color:white;">Tüm Editörleri Görüntüle</a>
+            </div>
+        </div>
+    </div>
+</div>

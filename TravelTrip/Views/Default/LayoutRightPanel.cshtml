@@ -1,0 +1,167 @@
+﻿﻿@model TravelTrip.Models.Classes.NewsComments
+<div class="col-md-4 side-bar">
+    <div class="first_half">
+        <div class="list_vertical" style="margin-top:0px !important">
+            <section class="accordation_menu">
+                <div>
+                    <input id="label-1" name="lida" type="radio" checked />
+                    <label for="label-1" id="item1"><i class="ferme"> </i>Trend Haberler<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+                    <div class="content" id="a1">
+                        <div class="scrollbar" id="style-2">
+                            <div class="force-overflow">
+                                <div class="popular-post-grids">
+                                    @foreach (var item in Model.Deger1.OrderByDescending(x => x.newViewNumber).Take(5))
+                                    {
+                                        <div class="popular-post-grid">
+                                            <div class="post-img">
+                                                <a href="/New/NewDetail/@item.newID" target="_blank"> <img src="@Url.Content(item.newPhoto)" /></a>
+
+                                            </div>
+                                            <div class="post-text">
+                                                <a class="pp-title" target="_blank" href="/New/NewDetail/@item.newID">@item.newTitle</a>
+                                                <p>
+                                                    @item.newtime.ToString("dddd, dd MMMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR"))
+                                                </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input id="label-2" name="lida" type="radio" />
+                    <label for="label-2" id="item2"><i class="icon-leaf" id="i2"></i>Güncel Haberler<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+                    <div class="content" id="a2">
+                        <div class="scrollbar" id="style-2">
+                            <div class="force-overflow">
+                                <div class="popular-post-grids">
+                                    @foreach (var item in Model.Deger1.OrderByDescending(x => x.newtime).Take(5))
+                                    {
+                                        <div class="popular-post-grid">
+                                            <div class="post-img">
+                                                <a target="_blank" href="/New/NewDetail/@item.newID">
+                                                    <img src="@Url.Content(item.newPhoto)" />
+                                                </a>
+                                            </div>
+                                            <div class="post-text">
+                                                <a class="pp-title" target="_blank" href="/New/NewDetail/@item.newID"> @item.newTitle</a>
+                                                <p>
+                                                    @item.newtime.ToString("dddd, dd MMMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR"))
+                                                </p>
+                                            </div>
+                                            <div class="clearfix"></div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <input id="label-3" name="lida" type="radio" />
+                    <label for="label-3" id="item3"><i class="icon-trophy" id="i3"></i>Son Yorumlar<i class="icon-plus-sign i-right1"></i><i class="icon-minus-sign i-right2"></i></label>
+                    <div class="content" id="a3">
+                        <div class="scrollbar" id="style-2">
+                            <div class="force-overflow">
+                                <div class="response">
+                                    @foreach (var item in Model.Deger4)
+                                    {
+                                        <div class="media response-info" style="border-bottom:solid 1px gray;padding-bottom:15px;margin-top:15px">
+                                            <div class="media-left response-text-left">
+                                                <img class="media-object" src="@item.commentAvatar" style="width:80px" alt="" />
+                                                <p style="color: #002370;font-weight:600;margin-top:5px">@item.commentUsername.Trim().Replace(" ", string.Empty)</p>
+                                            </div>
+                                            <div class="media-body response-text-right">
+                                                <p>
+                                                    @item.commentMessage
+                                                </p>
+                                                <ul>
+                                                    <li>@item.commentTime.ToString("dddd, dd MMMM yyyy HH mm", new System.Globalization.CultureInfo("tr-TR"))</li>
+                                                    <li><a href="/New/NewDetail/@item.commentNewId" style="color:#002370" target="_blank">Habere Git</a></li>
+                                                </ul>
+                                            </div>
+                                            <div class="clearfix"> </div>
+                                            <div class="sidebar-divider"></div>
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+    </div>
+    <div class="secound_half">
+        <div class="side-bar-articles">
+            @foreach (var item in Model.Deger1.OrderByDescending(x => x.newtime).Skip(10).Take(5))
+            {
+                <div class="side-bar-article">
+                    <a href="/New/NewDetail/@item.newID" target="_blank"><img src="@item.newPhoto" alt="" /></a>
+                    <div class="side-bar-article-title">
+                        <a href="/New/NewDetail/@item.newID" target="_blank">@item.newTitle</a>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+    <div class="clearfix"></div>
+
+    <div>
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- dikeyyyyy -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9796945223671733"
+             data-ad-slot="9965688349"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="clearfix"></div>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- gerÃ§ekyatay -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9796945223671733"
+             data-ad-slot="5124231681"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="clearfix"></div>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- gerÃ§ekyatay -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9796945223671733"
+             data-ad-slot="5124231681"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="clearfix"></div>
+
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <!-- gerÃ§ekyatay -->
+        <ins class="adsbygoogle"
+             style="display:block"
+             data-ad-client="ca-pub-9796945223671733"
+             data-ad-slot="5124231681"
+             data-ad-format="auto"
+             data-full-width-responsive="true"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+        <div class="clearfix"></div>
+    </div>
+</div>

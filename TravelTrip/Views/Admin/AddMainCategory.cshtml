@@ -1,0 +1,24 @@
+﻿@model TravelTrip.Models.Classes.MainCategory
+
+
+@{
+    ViewBag.Title = "AddCategory";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="container" style="margin-top:50px">
+
+    <form class="form-group" method="post">
+        <div>
+            <label>Üst Kategori Adı:</label>
+            <input type="text" class="form-control" name="mainCategoryName" required="required" />
+        </div>
+        <br />
+
+        <div style="margin-top:10px">
+            <button class="btn btn-success" id="btnAddMainCategory">Üst Kategori Ekle </button>
+        </div>
+        <script src="~/Scripts/jquery-3.4.1.js"></script>
+    </form>
+
+</div>

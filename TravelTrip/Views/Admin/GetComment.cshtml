@@ -1,0 +1,37 @@
+﻿@model TravelTrip.Models.Classes.Comment
+@{
+    ViewBag.Title = "GetComment";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<h2>Yorum Düzenle</h2>
+
+@using (Html.BeginForm("UpdateComment", "Admin", FormMethod.Post))
+{
+    <div class="container" style="margin-top:50px">
+
+        <div class="form-group" hidden="hidden">
+            @Html.Label("Yorum Id:")
+            @Html.TextBoxFor(m => m.commentID, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Yorum Kullanıcı Adı:")
+            @Html.TextBoxFor(m => m.commentUsername, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Yorum Kullanıcı Mail:")
+            @Html.TextBoxFor(m => m.commentMail, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Yorum Mesajı:")
+            @Html.TextBoxFor(m => m.commentMessage, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            @Html.Label("Yorum Avatar:")
+            @Html.TextBoxFor(m => m.commentAvatar, new { @class = "form-control" })
+        </div>
+        <div class="form-group">
+            <button class="btn btn-success">Yorum Güncelle</button>
+        </div>
+    </div>
+}

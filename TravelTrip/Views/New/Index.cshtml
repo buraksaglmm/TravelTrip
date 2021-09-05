@@ -1,0 +1,46 @@
+﻿@model TravelTrip.Models.Classes.NewsComments
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="main-body">
+    <div class="wrap">
+        <ol class="breadcrumb">
+            <li><a href="/Default/Index">Anasayfa</a></li>
+            <li class="active">Haberler</li>
+        </ol>
+        <div class="col-md-8 content-left">
+            <div class="articles sports">
+                <header>
+                    <h3 class="title-head">Tüm Haberler</h3>
+                </header>
+                @foreach (var item in Model.Deger1.OrderByDescending(x => x.newtime).Take(20))
+                {
+                    <div class="article">
+                        <div class="article-left">
+                            <a href="/New/NewDetail/@item.newID"><img src="@item.newPhoto"></a>
+                        </div>
+                        <div class="article-right">
+                            <div class="article-title">
+                                <p>
+                                    @item.newtime.ToString("dddd, dd MMMM yyyy HH:mm", new System.Globalization.CultureInfo("tr-TR"))
+                                </p>
+                                <a class="title" href="/New/NewDetail/@item.newID">@item.newTitle</a>
+                            </div>
+                            <div class="article-text">
+                                <p>@Html.Raw(item.newDescription)</p>
+                                <a href="/New/NewDetail/@item.newID"><img src="~/web3/images/details.png" alt="" style="height:60px;width:60px" /></a>
+                                <div class="clearfix"></div>
+                            </div>
+                        </div>
+                        <div class="clearfix"></div>
+                    </div>
+                }
+            </div>
+        </div>
+        @Html.Action("LayoutRightPanel", "Default")
+        <div class="clearfix"></div>
+    </div>
+</div>

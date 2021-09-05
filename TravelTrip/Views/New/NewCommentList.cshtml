@@ -1,0 +1,101 @@
+﻿
+<div class="coment-form">
+    <h4>Yorum Yap</h4>
+    <style>
+        .avatar {
+            vertical-align: middle;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+        }
+    </style>
+    <form method="post">
+
+        <div class="hidden">
+            <input type="text" name="commentTime" hidden="hidden" value="@DateTime.Now.ToString()" />
+            <input type="text" name="commentNewId" hidden="hidden" value="@ViewBag.deger" />
+            <input type="text" name="newID" hidden="hidden" value="@ViewBag.deger" />
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <button class="btn btn-default btn-block " style="border:1px solid #002370 !important;margin-top:10px;color:#002370;outline:none" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+                    Avatar Seçebilirsiniz
+                </button>
+                <div class="collapse" id="collapseExample">
+                    <div class="card card-body" style="margin-top:10px">
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-1.png">
+                            <img src="~/images/avatars/avatar-1.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-2.png">
+                            <img src="~/images/avatars/avatar-2.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-3.png">
+                            <img src="~/images/avatars/avatar-3.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-4.png">
+                            <img src="~/images/avatars/avatar-4.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-5.png">
+                            <img src="~/images/avatars/avatar-5.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-6.png">
+                            <img src="~/images/avatars/avatar-6.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-7.png">
+                            <img src="~/images/avatars/avatar-7.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-8.png">
+                            <img src="~/images/avatars/avatar-8.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-9.png">
+                            <img src="~/images/avatars/avatar-9.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-10.png">
+                            <img src="~/images/avatars/avatar-10.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-11.png">
+                            <img src="~/images/avatars/avatar-11.png" alt="Avatar" class="avatar" />
+                        </label>
+                        <label>
+                            <input type="radio" name="commentAvatar" value="/images/avatars/avatar-12.png">
+                            <img src="~/images/avatars/avatar-12.png" alt="Avatar" class="avatar" />
+                        </label>
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <input type="text" style="width:100%;margin-top:10px" name="commentUsername" required="" placeholder="İsim:" />
+            </div>
+            <div class="col-md-6">
+                <input type="email" style="width:100%;margin-top:10px" name="commentMail" required="" placeholder="Email:" />
+            </div>
+
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <textarea name="commentMessage" style="margin-top:15px" required="" placeholder="Mesajınız:"></textarea>
+                <input type="submit" value="Gönder">
+            </div>
+        </div>
+    </form>
+</div>
+@if (ViewBag.isComment ?? false)
+{
+    <script>
+        alert("Yorumunuz Editör onayından sonra yayına alınacaktır!");
+    </script>
+}
+
